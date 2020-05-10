@@ -30,5 +30,5 @@ This implementation has been tested on Windows 10.1909 and the main components t
  
 ### Some results on the test data: ###
 ![img](img/result.png)
-The images shows the middle slices of the generated healthy volume, the newly generated vertebra marked red.
+The images shows the middle slices (sagittal, coronal, axial) of the generated healthy volume, the newly generated vertebra marked red.
  
