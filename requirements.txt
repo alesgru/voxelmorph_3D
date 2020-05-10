@@ -1,0 +1,11 @@
+torch
+torchvision
+polyaxon-client==0.5.6
+nibabel
+nbformat
+tensorboard
+future
+scipy
+matplotlib
+keras
+tensorflow

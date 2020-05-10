@@ -1,0 +1,51 @@
+---
+version: 1
+
+kind: experiment
+
+framework: pytorch
+
+tags: [unhealthy_with_norm_filter_only_on_training_data]
+ 
+build:
+  image: pytorch/pytorch:1.2-cuda10.0-cudnn7-runtime
+  build_steps:
+    - pip install -r requirements.txt
+
+environment:
+  resources:
+    cpu:
+      requests: 0
+      limits: 0
+    memory:
+      requests: 20000
+      limits: 30000
+    gpu:
+      requests: 1
+      limits: 1
+
+declarations:
+  data_dir: "/data/PMSD_voxelmorph/128/" 
+  atlas_dir: '/data/PMSD_voxelmorph/atlas128/'
+  size: 128
+  lr: 1e-4
+  n_iter: 7001
+  data_loss: 'mse'
+  model: 'vm2' 
+  reg_param: 0.01
+  batch_size: 2
+  n_save_iter: 300
+  nr_val_data: 4
+
+run:
+  cmd: python -u train.py  --data_dir={{ data_dir }}\
+                               --atlas_dir={{ atlas_dir }}\
+                               --size={{ size }}\
+                               --lr={{ lr }}\
+                               --n_iter={{ n_iter }}\
+                               --data_loss={{ data_loss}} \
+                               --model={{ model }}\
+                               --reg_param={{ reg_param }}\
+                               --batch_size={{ batch_size }}\
+                               --n_save_iter={{ n_save_iter }}\
+                               --nr_val_data={{ nr_val_data }}
